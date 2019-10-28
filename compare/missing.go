@@ -3,23 +3,24 @@ package compare
 // FindMissingElement compares two slices of different length,
 // and returns the extra element between the two
 func FindMissingElement(s1, s2 []int) int {
-	// Find sum of elements in first slice
-	sum1 := 0
-	for _, v := range s1 {
-		sum1 += v
-	}
-
-	// Find sum of elements in second slice
-	sum2 := 0
-	for _, v := range s2 {
-		sum2 += v
-	}
-
-	// Taking into consideration the case where the extra number is < 0
-	// The slice with greater lenght has the extra number
+	// Find which slice is longer
+	var long, short []int
 	if len(s1) > len(s2) {
-		return sum1 - sum2
+		long, short = s1, s2
+	} else {
+		long, short = s2, s1
 	}
-	return sum2 - sum1
+	var missing int
+
+	for _, v1 := range long {
+		for _, v2 := range short {
+			if v1 == v2 {
+				// found = true
+				break
+			}
+			missing = v1
+		}
+	}
+	return missing
 
 }

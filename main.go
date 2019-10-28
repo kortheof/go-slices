@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/kortheof/go-slices/compare"
 )
 
